@@ -60,7 +60,14 @@ describe(`modules/create-market/selectors/create-market-form.js`, () => {
 
 	returnObj = {
 		tradingFeePercent: 2,
+		makerFee: 0.5,
 		initialLiquidity: 500,
+		startingQuantity: 10,
+		bestStartingQuanity: 20,
+		priceWidth: 0.1,
+		halfPriceWidth: 0.05,
+		priceDepth: 0.1,
+		isSimulation: false
 	};
 	step4 = sinon.stub(Object.assign({}, steps, {
 		select: (formState) => returnObj
@@ -142,26 +149,32 @@ describe(`modules/create-market/selectors/create-market-form.js`, () => {
 
 	it(`should handle step4 correctly`, () => {
 		state.createMarketInProgress.step = 4;
-
+		
 		test = selector.default();
 
-		assert(step4.select.calledOnce);
-		assert(step4.isValid.calledOnce);
-		assert(step4.errors.calledOnce);
+		assert(step4.select.calledOnce, 'select is not called once');
+		assert(step4.isValid.calledOnce, 'isValid is not called once');
+		assert(step4.errors.calledOnce, 'errors is not called once');
 
-		assert.equal(test.step, 4);
-		assert.equal(test.type, 'binary');
-		assert.isFunction(test.onValuesUpdated);
-		assert.isString(test.descriptionPlaceholder);
-		assert.isNumber(test.descriptionMinLength);
-		assert.isNumber(test.descriptionMaxLength);
-		assert.isTrue(test.isValid);
-		assert.isNumber(test.tagsMaxNum);
-		assert.isNumber(test.tagMaxLength);
-		assert.isNumber(test.resourcesMaxNum);
-		assert.isNumber(test.resourceMaxLength);
-		assert.isNumber(test.tradingFeePercent);
-		assert.isNumber(test.initialLiquidity);
+		assert.equal(test.step, 4, 'step is not equal to 4');
+		assert.equal(test.type, 'binary', 'type is not binary');
+		assert.isFunction(test.onValuesUpdated, 'onValuesUpdates is not a function');
+		assert.isString(test.descriptionPlaceholder, 'descriptionPlaceholder is not a string');
+		assert.isNumber(test.descriptionMinLength, 'descriptionMinLength is not a number');
+		assert.isNumber(test.descriptionMaxLength, 'descriptionMaxLength is not a number');
+		assert.isTrue(test.isValid, 'isValid is not true');
+		assert.isNumber(test.tagsMaxNum, 'tagsMaxNum is not a number');
+		assert.isNumber(test.tagMaxLength, 'tagMaxLength is not a number');
+		assert.isNumber(test.resourcesMaxNum, 'resourcesMaxNum is not a number');
+		assert.isNumber(test.resourceMaxLength, 'resourceMaxLength is not a number');
+		assert.isNumber(test.tradingFeePercent, 'tradingFeePercent is not a number');
+		assert.isNumber(test.makerFee, 'makerFee is not a number');
+		assert.isNumber(test.startingQuantity, 'startingQuantity is not a number');
+		assert.isNumber(test.bestStartingQuanity, 'bestStartingQuantity is not a number');
+		assert.isNumber(test.priceWidth, 'priceWidth is not a number');
+		assert.isNumber(test.halfPriceWidth, 'halfPriceWidth is not a number');
+		assert.isNumber(test.priceDepth, 'priceDepth is not a number');
+		assert.isFalse(test.isSimulation, 'isSimulation is not false');
 		// set state to the current results from test for next step
 		state.createMarketInProgress = test;
 	});
