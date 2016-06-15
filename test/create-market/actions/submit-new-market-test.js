@@ -348,41 +348,4 @@ describe(`modules/create-market/actions/submit-new-market.js`, () => {
 			assert.deepEqual(marketData, expectedMarketData, 'market data was not correctly mutated');
 		});
 	});
-
-	it(`should be able to create a new market`, () => {
-		// store.dispatch(action.createMarket('trans1234', {
-		// 	type: BINARY
-		// }));
-		// clock.tick(20000);
-        //
-		// console.log('getActions -- ', store.getActions());
-        //
-		// assert.deepEqual(
-		// 	store.getActions(),
-		// 	[
-		// 		{
-		// 			type: 'CLEAR_MAKE_IN_PROGRESS'
-		// 		},
-		// 		{
-		// 			type: 'generate_order_book'
-		// 		},
-		// 		{
-		// 			type: 'loadMarket'
-		// 		}
-		// 	],
-		// 	`Didn't dispatch the right actions for a successfully created binary market`
-		// );
-		// assert(fakeAugurJS.createMarket.calledOnce, `createMarket wasn't called one time after dispatching a createMarket action`);
-		// assert(fakeLoadMarket.loadMarket.calledOnce, `loadMarket wasn't called once as expected`);
-		// assert(fakeGenerateOrderBook.submitGenerateOrderBook.calledOnce, 'submitGenerateOrderBook wasn\'t called once as expected');
-        //
-		// store.clearActions();
-        //
-		// store.dispatch(action.createMarket('trans12345', {
-		// 	type: BINARY
-		// }));
-        //
-		// assert(fakeAugurJS.createMarket.calledTwice, `createMarket wasn't called twice after dispatching a createMarket Action 2 times`);
-		// assert.deepEqual(store.getActions(), [], `Didn't properly dispatch actions for a error when creating account`);
-	});
 });
